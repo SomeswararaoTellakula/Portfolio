@@ -21,51 +21,70 @@ type ResearchItem = {
 }
 
 const profile = {
-  name: 'Someswara Rao Tellakula',
-  role: 'Computer Vision / Backend Systems Engineer',
+  name: 'SOMESWARA RAO TELLAKULA',
+  role: 'Final-year Information Technology student',
   location: 'Hyderabad, India',
   email: 'someshtellakula@gmail.com',
   github: 'https://github.com/SomeswararaoTellakula',
   linkedin: 'https://www.linkedin.com/in/someswara-rao-tellakula',
   summary:
-    'I build products that turn raw data into useful, measurable workflows across backend systems, real-time analytics, and applied computer vision.',
+    'Focused on backend and full-stack development, REST API design, relational and document data modeling, and owning projects from build through testing and deployment. Works across Python, Java, JavaScript, and SQL.',
 }
 
 const projects: Project[] = [
-  { name: 'Portfolio', type: 'Personal portfolio site', summary: 'A portfolio website designed to present my experience, projects, and technical focus in a clean, structured format.', impact: 'Showcases expertise and project work in a reusable, public-facing profile.', stack: ['HTML', 'CSS', 'JavaScript', 'React'] },
-  { name: 'DeepFit', type: 'Vision-led fitness intelligence', summary: 'A computer-vision product focused on athlete movement analysis and posture feedback for technique improvement and performance monitoring.', impact: 'Improves movement analysis accuracy and reduces manual observation overhead.', stack: ['Python', 'OpenCV', 'MediaPipe', 'FastAPI'] },
-  { name: 'Crowd_Detection', type: 'Crowd monitoring system', summary: 'A crowd density detection workflow designed to identify high-traffic areas and support situational awareness through visual analytics.', impact: 'Helps monitor crowd patterns and improve public-safety insights.', stack: ['Python', 'OpenCV', 'NumPy', 'Computer Vision'] },
-  { name: 'sstaxmentor', type: 'Mentorship / tax guidance platform', summary: 'A practical web application for tax-related guidance and user learning support with a simple front-end experience.', impact: 'Makes information access more approachable for users seeking guided financial education.', stack: ['JavaScript', 'React', 'Node.js'] },
-  { name: 'Task-Tracker', type: 'Task and time management app', summary: 'A personal task organization app focused on planning, productivity, and simple frontend-driven workflow management.', impact: 'Helps organize daily work and improves time and task visibility.', stack: ['JavaScript', 'Frontend', 'Productivity'] },
-  { name: 'Email-triage_scalar', type: 'Intelligent email workflow', summary: 'An email triage project designed to accelerate prioritization and classification of incoming messages using automation principles.', impact: 'Improves response efficiency and streamlines triage for high-volume communication.', stack: ['Python', 'Automation', 'AI'] },
-  { name: 'Intelligent-GST-Reconciliation-Using-Knowledge-Graphs', type: 'Knowledge-graph reconciliation solution', summary: 'A GST reconciliation system leveraging knowledge graphs to improve financial data matching and auditing workflows.', impact: 'Supports more structured and dependable reconciliation decisions.', stack: ['R', 'Knowledge Graphs', 'Data Reconciliation'] },
-  { name: 'FOOD-SERVICES', type: 'Food service delivery system', summary: 'An integrated food services delivery application intended to streamline service ordering and operational coordination.', impact: 'Supports a smoother digital ordering and service experience.', stack: ['JavaScript', 'Backend', 'Web App'] },
-  { name: 'Adobe', type: 'Creative tooling experiment', summary: 'A project exploring design-oriented tooling and creative workflow patterns inspired by Adobe-style product experiences.', impact: 'Strengthens design thinking and rapid prototyping capability.', stack: ['Python', 'Design', 'Creative Tech'] },
-  { name: 'Dynamo', type: 'General-purpose project', summary: 'A repository focused on experimentation, prototype building, and exploring practical engineering concepts in a reusable setup.', impact: 'Encourages iteration and problem-solving across small technical experiments.', stack: ['Python', 'JavaScript', 'Prototype'] },
+  {
+    name: 'DeepFit AI',
+    type: 'Sports Talent Assessment Platform',
+    summary:
+      'Built the Flask REST API and MongoDB schema for athlete profiles, video submissions, and per-rep scoring across 4 fitness tests.',
+    impact: 'Implemented pose-keypoint rep counting, joint-angle validation, live form-quality feedback, liveness checks, and shipped web and Android prototypes. Awarded 2nd Prize, CBIT Project Expo 2026.',
+    stack: ['Flask', 'MongoDB', 'YOLOv8', 'MediaPipe', 'OpenCV', 'Kotlin'],
+  },
+  {
+    name: 'CrowdGuard',
+    type: 'AI Crowd Risk Management',
+    summary:
+      'Designed a two-server architecture separating ML inference from video streaming and exposed 8 REST endpoints for camera management, MJPEG streaming, and analysis history.',
+    impact: 'Implemented density-based risk classification, grid-based hotspot detection, camera-failure fallback with 5-second reconnect, and sustained 4 concurrent streams at 15 FPS with sub-500ms API response.',
+    stack: ['Flask', 'YOLO', 'OpenCV', 'PyTorch', 'MongoDB'],
+  },
+  {
+    name: 'SiteLens',
+    type: 'Website AI-Readiness & Engagement Auditor',
+    summary:
+      'Architected 6 composable audit modules behind a single orchestrator over a shared engine, auditing any website for crawler reachability, structured data, accessibility, freshness, and engagement.',
+    impact: 'Built the crawl layer with connection pooling, retry backoff, and robots.txt enforcement; implemented 7 cross-page aggregation checks over a 20-page sample with deterministic JSON output under a 2-minute runtime budget.',
+    stack: ['Python', 'requests', 'BeautifulSoup4', 'lxml'],
+  },
 ]
 
 const research: ResearchItem[] = [
-  { title: 'Computer vision for operational monitoring', note: 'Applied image understanding to problem spaces that benefit from continuous, evidence-based review.', tag: 'Vision' },
-  { title: 'System design for human-in-the-loop automation', note: 'Designed workflows that combine model outputs with analyst review to improve confidence and actionability.', tag: 'Systems' },
-  { title: 'Data-driven field operations', note: 'Mapped operational signals into dashboards, summaries, and alerts to support faster decisions.', tag: 'Analytics' },
+  { title: 'Data Structures and Algorithms', note: 'Core coursework supporting strong problem-solving and efficient software design.', tag: 'Coursework' },
+  { title: 'DBMS, Operating Systems and Computer Networks', note: 'Fundamental systems knowledge for building reliable backend and distributed applications.', tag: 'Systems' },
+  { title: 'Statistics, Python Programming, Data Analysis', note: 'Relevant training for data-driven reasoning and AI-oriented problem solving.', tag: 'Data Science' },
 ]
 
 const stackGroups = [
-  { label: 'Core', items: ['Python', 'JavaScript', 'TypeScript', 'React', 'Node.js'] },
-  { label: 'ML / Vision', items: ['OpenCV', 'NumPy', 'MediaPipe', 'YOLO', 'TensorFlow'] },
-  { label: 'Backend', items: ['FastAPI', 'Flask', 'PostgreSQL', 'REST APIs'] },
-  { label: 'Product', items: ['Figma', 'Dash', 'Analytics', 'Diagnostics'] },
+  { label: 'Languages', items: ['Python', 'Java', 'JavaScript', 'C', 'C++', 'SQL', 'HTML5', 'CSS3'] },
+  { label: 'Backend & Web', items: ['Flask', 'Node.js', 'React.js', 'REST APIs', 'Bootstrap'] },
+  { label: 'Databases', items: ['MySQL', 'MongoDB', 'Schema Design', 'Joins', 'Query Optimization'] },
+  { label: 'Cloud & AI', items: ['AWS', 'Azure', 'GCP', 'OCI', 'Scikit-learn', 'TensorFlow', 'PyTorch', 'OpenCV', 'YOLOv8', 'MediaPipe', 'NLP'] },
 ]
 
 const education = [
-  { title: 'B.Tech in Computer Science & Engineering', place: 'G. Pulla Reddy Engineering College', detail: 'Focused on systems, algorithms, and applied software engineering.' },
-  { title: 'CGPA', place: '8.7 / 10', detail: 'Academic performance aligned with strong engineering discipline and technical consistency.' },
+  { title: 'Bachelor of Engineering in Information Technology', place: 'Vasavi College of Engineering', detail: 'Expected 2027 • CGPA: 7.22/10' },
+  { title: 'BS in Data Science', place: 'IIT Madras', detail: '2024 – Present • Relevant coursework: Statistics, Python Programming, Data Analysis' },
+  { title: 'Intermediate (MPC)', place: 'Sri Chaitanya Junior Kalasala', detail: '2021 – 2023 • 87.7%' },
+  { title: 'Secondary School Certificate (SSC)', place: 'Bala Karthikeya High School', detail: '2021 • GPA 10/10' },
 ]
 
 const honors = [
-  'Awarded for technical excellence and project execution',
-  'Recognized for leadership and active contribution in campus initiatives',
-  'Participated in NSS and community-led learning activities',
+  'Won 3rd Prize, Meta Composite Coding Competition, IIT Kharagpur (2025)',
+  'Qualified Round One, TCS CodeVita Season 13 (2025)',
+  'Won 2nd Prize, CBIT Project Expo (2026)',
+  'Active NSS volunteer in social awareness programs, blood donation drives, and rural development activities',
+  'Languages: English (Fluent), Telugu (Native), Hindi (Intermediate)',
+  'Interests: Backend Engineering, Cloud Computing, Competitive Programming',
 ]
 
 function App() {
@@ -208,8 +227,8 @@ function App() {
         return (
           <section className="section-shell page-shell">
             <div className="section-heading">
-              <p className="eyebrow">Research + thinking</p>
-              <h2>Grounded in data, tuned for outcomes.</h2>
+              <p className="eyebrow">Skills</p>
+              <h2>Languages, backend systems, databases, cloud, and AI workflows.</h2>
             </div>
             <div className="research-list">
               {research.map((item) => (
@@ -219,32 +238,6 @@ function App() {
                   <p>{item.note}</p>
                 </article>
               ))}
-            </div>
-          </section>
-        )
-      case 'about':
-        return (
-          <section className="section-shell page-shell">
-            <div className="section-heading">
-              <p className="eyebrow">About</p>
-              <h2>Engineer-first, problem-first.</h2>
-            </div>
-            <div className="about-layout">
-              <div className="story-box animate-float">
-                <p>
-                  I’m a developer focused on software that helps teams understand reality faster and act on the right signal.
-                  My work blends backend systems, applied computer vision, and operational dashboards to solve real-world problems with measurable impact.
-                </p>
-              </div>
-              <div className="education-box animate-float">
-                {education.map((item) => (
-                  <div key={item.title} className="edu-row">
-                    <span>{item.title}</span>
-                    <strong>{item.place}</strong>
-                    <small>{item.detail}</small>
-                  </div>
-                ))}
-              </div>
             </div>
             <div className="stack-grid stack-page-grid">
               {stackGroups.map((group) => (
@@ -257,6 +250,31 @@ function App() {
                   </ul>
                 </div>
               ))}
+            </div>
+          </section>
+        )
+      case 'about':
+        return (
+          <section className="section-shell page-shell">
+            <div className="section-heading">
+              <p className="eyebrow">Education</p>
+              <h2>Academic background and coursework.</h2>
+            </div>
+            <div className="about-layout">
+              <div className="story-box animate-float">
+                <p>
+                  Final-year Information Technology student focused on backend and full-stack development, REST API design, relational and document data modeling, and owning projects from build through testing and deployment.
+                </p>
+              </div>
+              <div className="education-box animate-float">
+                {education.map((item) => (
+                  <div key={item.title} className="edu-row">
+                    <span>{item.title}</span>
+                    <strong>{item.place}</strong>
+                    <small>{item.detail}</small>
+                  </div>
+                ))}
+              </div>
             </div>
             <ul className="honors-list">
               {honors.map((item) => (
@@ -294,7 +312,7 @@ function App() {
           <section className="hero section-shell page-shell">
             <div className="hero-copy animate-float">
               <div className="eyebrow-row">
-                <span className="eyebrow">Backend systems · computer vision · product thinking</span>
+                <span className="eyebrow">Backend engineering · cloud · AI systems</span>
               </div>
               <h1>{profile.name}</h1>
               <p className="headline">{profile.role}</p>
@@ -347,8 +365,8 @@ function App() {
         <nav className="main-nav">
           <button type="button" className={currentPage === 'home' ? 'nav-item active' : 'nav-item'} onClick={() => setCurrentPage('home')}>Home</button>
           <button type="button" className={currentPage === 'projects' ? 'nav-item active' : 'nav-item'} onClick={() => setCurrentPage('projects')}>Projects</button>
-          <button type="button" className={currentPage === 'research' ? 'nav-item active' : 'nav-item'} onClick={() => setCurrentPage('research')}>Research</button>
-          <button type="button" className={currentPage === 'about' ? 'nav-item active' : 'nav-item'} onClick={() => setCurrentPage('about')}>About</button>
+          <button type="button" className={currentPage === 'research' ? 'nav-item active' : 'nav-item'} onClick={() => setCurrentPage('research')}>Skills</button>
+          <button type="button" className={currentPage === 'about' ? 'nav-item active' : 'nav-item'} onClick={() => setCurrentPage('about')}>Education</button>
           <button type="button" className={currentPage === 'contact' ? 'nav-item active' : 'nav-item'} onClick={() => setCurrentPage('contact')}>Contact</button>
         </nav>
 
