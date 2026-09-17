@@ -1,97 +1,18 @@
 import { useEffect, useRef, useState } from 'react'
 import profilePhoto from '../PIC.jpg'
+import { achievements, beyondCode, education, profile, projects, research, skills } from './content'
 import './App.css'
 
 type ThemeMode = 'dark' | 'light'
 type ViewMode = 'human' | 'json'
-type PageKey = 'home' | 'projects' | 'research' | 'about' | 'contact'
-
-type Project = {
-  name: string
-  type: string
-  summary: string
-  impact: string
-  stack: string[]
-}
-
-type ResearchItem = {
-  title: string
-  note: string
-  tag: string
-}
-
-const profile = {
-  name: 'SOMESWARA RAO TELLAKULA',
-  role: 'Final-year Information Technology student',
-  location: 'Hyderabad, India',
-  email: 'someshtellakula@gmail.com',
-  github: 'https://github.com/SomeswararaoTellakula',
-  linkedin: 'https://www.linkedin.com/in/someswara-rao-tellakula',
-  summary:
-    'Focused on backend and full-stack development, REST API design, relational and document data modeling, and owning projects from build through testing and deployment. Works across Python, Java, JavaScript, and SQL.',
-}
-
-const projects: Project[] = [
-  {
-    name: 'DeepFit AI',
-    type: 'Sports Talent Assessment Platform',
-    summary:
-      'Built the Flask REST API and MongoDB schema for athlete profiles, video submissions, and per-rep scoring across 4 fitness tests.',
-    impact: 'Implemented pose-keypoint rep counting, joint-angle validation, live form-quality feedback, liveness checks, and shipped web and Android prototypes. Awarded 2nd Prize, CBIT Project Expo 2026.',
-    stack: ['Flask', 'MongoDB', 'YOLOv8', 'MediaPipe', 'OpenCV', 'Kotlin'],
-  },
-  {
-    name: 'CrowdGuard',
-    type: 'AI Crowd Risk Management',
-    summary:
-      'Designed a two-server architecture separating ML inference from video streaming and exposed 8 REST endpoints for camera management, MJPEG streaming, and analysis history.',
-    impact: 'Implemented density-based risk classification, grid-based hotspot detection, camera-failure fallback with 5-second reconnect, and sustained 4 concurrent streams at 15 FPS with sub-500ms API response.',
-    stack: ['Flask', 'YOLO', 'OpenCV', 'PyTorch', 'MongoDB'],
-  },
-  {
-    name: 'SiteLens',
-    type: 'Website AI-Readiness & Engagement Auditor',
-    summary:
-      'Architected 6 composable audit modules behind a single orchestrator over a shared engine, auditing any website for crawler reachability, structured data, accessibility, freshness, and engagement.',
-    impact: 'Built the crawl layer with connection pooling, retry backoff, and robots.txt enforcement; implemented 7 cross-page aggregation checks over a 20-page sample with deterministic JSON output under a 2-minute runtime budget.',
-    stack: ['Python', 'requests', 'BeautifulSoup4', 'lxml'],
-  },
-]
-
-const research: ResearchItem[] = [
-  { title: 'Data Structures and Algorithms', note: 'Core coursework supporting strong problem-solving and efficient software design.', tag: 'Coursework' },
-  { title: 'DBMS, Operating Systems and Computer Networks', note: 'Fundamental systems knowledge for building reliable backend and distributed applications.', tag: 'Systems' },
-  { title: 'Statistics, Python Programming, Data Analysis', note: 'Relevant training for data-driven reasoning and AI-oriented problem solving.', tag: 'Data Science' },
-]
-
-const stackGroups = [
-  { label: 'Languages', items: ['Python', 'Java', 'JavaScript', 'C', 'C++', 'SQL', 'HTML5', 'CSS3'] },
-  { label: 'Backend & Web', items: ['Flask', 'Node.js', 'React.js', 'REST APIs', 'Bootstrap'] },
-  { label: 'Databases', items: ['MySQL', 'MongoDB', 'Schema Design', 'Joins', 'Query Optimization'] },
-  { label: 'Cloud & AI', items: ['AWS', 'Azure', 'GCP', 'OCI', 'Scikit-learn', 'TensorFlow', 'PyTorch', 'OpenCV', 'YOLOv8', 'MediaPipe', 'NLP'] },
-]
-
-const education = [
-  { title: 'Bachelor of Engineering in Information Technology', place: 'Vasavi College of Engineering', detail: 'Expected 2027 • CGPA: 7.22/10' },
-  { title: 'BS in Data Science', place: 'IIT Madras', detail: '2024 – Present • Relevant coursework: Statistics, Python Programming, Data Analysis' },
-  { title: 'Intermediate (MPC)', place: 'Sri Chaitanya Junior Kalasala', detail: '2021 – 2023 • 87.7%' },
-  { title: 'Secondary School Certificate (SSC)', place: 'Bala Karthikeya High School', detail: '2021 • GPA 10/10' },
-]
-
-const honors = [
-  'Won 3rd Prize, Meta Composite Coding Competition, IIT Kharagpur (2025)',
-  'Qualified Round One, TCS CodeVita Season 13 (2025)',
-  'Won 2nd Prize, CBIT Project Expo (2026)',
-  'Active NSS volunteer in social awareness programs, blood donation drives, and rural development activities',
-  'Languages: English (Fluent), Telugu (Native), Hindi (Intermediate)',
-  'Interests: Backend Engineering, Cloud Computing, Competitive Programming',
-]
+type PageKey = 'home' | 'work' | 'research' | 'stack' | 'about' | 'contact'
 
 function App() {
-  const [theme, setTheme] = useState<ThemeMode>('dark')
+  const [theme, setTheme] = useState<ThemeMode>('light')
   const [viewMode, setViewMode] = useState<ViewMode>('human')
   const [effectsOn, setEffectsOn] = useState(true)
   const [currentPage, setCurrentPage] = useState<PageKey>('home')
+  const [copiedEmail, setCopiedEmail] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
 
   useEffect(() => {
@@ -182,6 +103,16 @@ function App() {
     }
   }, [effectsOn, theme])
 
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(profile.email)
+      setCopiedEmail(true)
+      window.setTimeout(() => setCopiedEmail(false), 2000)
+    } catch {
+      setCopiedEmail(false)
+    }
+  }
+
   const renderPage = () => {
     if (viewMode === 'json') {
       return (
@@ -190,29 +121,29 @@ function App() {
             <p className="eyebrow">Portfolio JSON</p>
             <h2>Structured profile data</h2>
           </div>
-          <pre>{JSON.stringify({ profile, projects, research, stackGroups, education, honors }, null, 2)}</pre>
+          <pre>{JSON.stringify({ profile, projects, research, skills, education, achievements, beyondCode }, null, 2)}</pre>
         </section>
       )
     }
 
     switch (currentPage) {
-      case 'projects':
+      case 'work':
         return (
           <section className="section-shell page-shell">
             <div className="section-heading">
-              <p className="eyebrow">Selected work</p>
-              <h2>Builds that turn complexity into usable products.</h2>
+              <p className="eyebrow">Work</p>
+              <h2>Projects that turn messy real-world input into structured, usable signal.</h2>
             </div>
             <div className="project-grid">
               {projects.map((project) => (
                 <article key={project.name} className="project-card animate-float">
                   <div className="project-header">
                     <p className="project-type">{project.type}</p>
-                    <span className="project-badge">Live prototype</span>
+                    {project.award ? <span className="project-badge">{project.award}</span> : <span className="project-badge">{project.demo}</span>}
                   </div>
                   <h3>{project.name}</h3>
-                  <p>{project.summary}</p>
-                  <div className="impact-box">{project.impact}</div>
+                  <p>{project.description}</p>
+                  <div className="impact-box">{project.numbers}</div>
                   <ul className="chip-list">
                     {project.stack.map((item) => (
                       <li key={item}>{item}</li>
@@ -227,20 +158,30 @@ function App() {
         return (
           <section className="section-shell page-shell">
             <div className="section-heading">
-              <p className="eyebrow">Skills</p>
-              <h2>Languages, backend systems, databases, cloud, and AI workflows.</h2>
+              <p className="eyebrow">Research</p>
+              <h2>Published ideas and technical writing.</h2>
             </div>
-            <div className="research-list">
+            <div className="research-list research-plain">
               {research.map((item) => (
                 <article key={item.title} className="research-card animate-float">
-                  <span className="research-tag">{item.tag}</span>
                   <h3>{item.title}</h3>
-                  <p>{item.note}</p>
+                  <p className="research-authors"><strong>Tellakula Someswararao</strong> and collaborators</p>
+                  <p className="research-meta">{item.status}</p>
+                  <p>{item.summary}</p>
                 </article>
               ))}
             </div>
+          </section>
+        )
+      case 'stack':
+        return (
+          <section className="section-shell page-shell">
+            <div className="section-heading">
+              <p className="eyebrow">Stack</p>
+              <h2>Connected skills mapped to the projects that use them.</h2>
+            </div>
             <div className="stack-grid stack-page-grid">
-              {stackGroups.map((group) => (
+              {skills.map((group) => (
                 <div key={group.label} className="stack-group animate-float">
                   <h3>{group.label}</h3>
                   <ul>
@@ -257,14 +198,12 @@ function App() {
         return (
           <section className="section-shell page-shell">
             <div className="section-heading">
-              <p className="eyebrow">Education</p>
-              <h2>Academic background and coursework.</h2>
+              <p className="eyebrow">About</p>
+              <h2>Education and the path behind the work.</h2>
             </div>
             <div className="about-layout">
               <div className="story-box animate-float">
-                <p>
-                  Final-year Information Technology student focused on backend and full-stack development, REST API design, relational and document data modeling, and owning projects from build through testing and deployment.
-                </p>
+                <p>{profile.summary}</p>
               </div>
               <div className="education-box animate-float">
                 {education.map((item) => (
@@ -276,11 +215,25 @@ function App() {
                 ))}
               </div>
             </div>
-            <ul className="honors-list">
-              {honors.map((item) => (
-                <li key={item} className="animate-float">{item}</li>
-              ))}
-            </ul>
+            <div className="timeline-wrap">
+              <h3>Achievements</h3>
+              <div className="timeline">
+                {achievements.map((item) => (
+                  <div key={`${item.year}-${item.title}`} className="timeline-item animate-float">
+                    <span className="timeline-year">{item.year}</span>
+                    <p>{item.title}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="beyond-box animate-float">
+              <h3>Beyond code</h3>
+              <ul>
+                {beyondCode.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
           </section>
         )
       case 'contact':
@@ -288,12 +241,15 @@ function App() {
           <section className="section-shell page-shell contact-shell">
             <div className="section-heading">
               <p className="eyebrow">Contact</p>
-              <h2>Let’s build something useful.</h2>
+              <h2>Let’s build something.</h2>
             </div>
             <div className="contact-panel animate-float">
               <div className="contact-card primary-card">
                 <span>Email</span>
                 <a href={`mailto:${profile.email}`}>{profile.email}</a>
+                <button type="button" className="copy-email" onClick={handleCopyEmail}>
+                  {copiedEmail ? 'Copied' : 'Copy email'}
+                </button>
               </div>
               <div className="contact-card">
                 <span>GitHub</span>
@@ -312,19 +268,20 @@ function App() {
           <section className="hero section-shell page-shell">
             <div className="hero-copy animate-float">
               <div className="eyebrow-row">
-                <span className="eyebrow">Backend engineering · cloud · AI systems</span>
+                <span className="eyebrow">Backend systems · computer vision · data-driven products</span>
               </div>
               <h1>{profile.name}</h1>
               <p className="headline">{profile.role}</p>
-              <p className="summary">{profile.summary}</p>
+              <p className="summary">{profile.subline}</p>
               <div className="cta-row">
-                <button type="button" className="primary-btn" onClick={() => setCurrentPage('projects')}>
-                  View work
+                <button type="button" className="primary-btn" onClick={() => setCurrentPage('work')}>
+                  See my work
                 </button>
-                <button type="button" className="secondary-btn" onClick={() => setCurrentPage('contact')}>
-                  Contact
-                </button>
+                <a href="/resume.pdf" target="_blank" rel="noreferrer" className="secondary-btn">
+                  Download résumé
+                </a>
               </div>
+              <p className="small-note">{profile.openTo}</p>
             </div>
 
             <div className="hero-visual animate-float">
@@ -335,15 +292,15 @@ function App() {
               <aside className="hero-panel">
                 <div className="mini-stat">
                   <span>Focus</span>
-                  <strong>Applied AI & systems</strong>
+                  <strong>Backend engineering</strong>
                 </div>
                 <div className="mini-stat">
                   <span>Location</span>
                   <strong>{profile.location}</strong>
                 </div>
                 <div className="mini-stat">
-                  <span>Profile</span>
-                  <strong>Engineer + builder</strong>
+                  <span>Study</span>
+                  <strong>Vasavi + IIT Madras</strong>
                 </div>
               </aside>
             </div>
@@ -364,9 +321,10 @@ function App() {
 
         <nav className="main-nav">
           <button type="button" className={currentPage === 'home' ? 'nav-item active' : 'nav-item'} onClick={() => setCurrentPage('home')}>Home</button>
-          <button type="button" className={currentPage === 'projects' ? 'nav-item active' : 'nav-item'} onClick={() => setCurrentPage('projects')}>Projects</button>
-          <button type="button" className={currentPage === 'research' ? 'nav-item active' : 'nav-item'} onClick={() => setCurrentPage('research')}>Skills</button>
-          <button type="button" className={currentPage === 'about' ? 'nav-item active' : 'nav-item'} onClick={() => setCurrentPage('about')}>Education</button>
+          <button type="button" className={currentPage === 'work' ? 'nav-item active' : 'nav-item'} onClick={() => setCurrentPage('work')}>Work</button>
+          <button type="button" className={currentPage === 'research' ? 'nav-item active' : 'nav-item'} onClick={() => setCurrentPage('research')}>Research</button>
+          <button type="button" className={currentPage === 'stack' ? 'nav-item active' : 'nav-item'} onClick={() => setCurrentPage('stack')}>Stack</button>
+          <button type="button" className={currentPage === 'about' ? 'nav-item active' : 'nav-item'} onClick={() => setCurrentPage('about')}>About</button>
           <button type="button" className={currentPage === 'contact' ? 'nav-item active' : 'nav-item'} onClick={() => setCurrentPage('contact')}>Contact</button>
         </nav>
 
