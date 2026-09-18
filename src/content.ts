@@ -1,4 +1,4 @@
-export const LINKEDIN_URL = 'https://www.linkedin.com/in/someswara-rao-tellakula'
+export const LINKEDIN_URL = 'https://www.linkedin.com/in/someswararao-tellakula-5633b6330/'
 export const RESEARCH_STATUS = 'Research collaboration / in progress'
 
 export const profile = {
